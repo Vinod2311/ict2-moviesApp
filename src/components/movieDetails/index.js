@@ -57,6 +57,16 @@ const MovieDetails = ( props) => {
         ))}
       </Paper>
       <Paper component="ul" className={classes.chipSet}>
+        <li>
+          <Chip label="Production Countries" className={classes.chipLabel} color="primary" />
+        </li>
+        {movie.production_countries.map((g) => (
+          <li key={g.name}>
+            <Chip label={g.name} className={classes.chip} />
+          </li>
+        ))}
+      </Paper>
+      <Paper component="ul" className={classes.chipSet}>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
           icon={<MonetizationIcon />}
