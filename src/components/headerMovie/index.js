@@ -43,7 +43,7 @@ const MovieHeader = (props) => {
       <IconButton aria-label="go forward" onClick={() => navigate(1)}>
         <ArrowForwardIcon color="primary" fontSize="large" />
       </IconButton>
-    </Paper>
+  </Paper>
   );
 };
 
