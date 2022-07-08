@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { getGenres } from "../../api/tmbd-api";
+import { getGenres } from "../../api/tmdb-api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
