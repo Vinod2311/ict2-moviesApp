@@ -14,6 +14,7 @@ import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import { MoviesContext } from "../../contexts/moviesContext";
+import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 
 const useStyles = makeStyles({
   card: { maxWidth: 345 },
@@ -26,6 +27,7 @@ const useStyles = makeStyles({
 export default function MovieCard({ movie, action }) {
   const classes = useStyles();
   const { favourites, addToFavourites } = useContext(MoviesContext);
+  const { mustWatch, addToMustWatch} = useContext(MoviesContext);
 
   if (favourites.find((id) => id === movie.id)) {
     movie.favourite = true;
@@ -33,21 +35,33 @@ export default function MovieCard({ movie, action }) {
     movie.favourite = false
   }
 
-  const handleAddToFavourite = (e) => {
-    e.preventDefault();
-    addToFavourites(movie);
-  };
+  if (mustWatch.find((id) => id === movie.id)) {
+    movie.mustWatch = true;
+  } else {
+    movie.mustWatch = false
+  }
+
+
   return (
     <Card className={classes.card}>
       <CardHeader
       className={classes.header}
+      
+      
+      
       avatar={
         movie.favourite ? (
           <Avatar className={classes.avatar}>
             <FavoriteIcon />
           </Avatar>
+        ) : movie.mustWatch ? (
+          <Avatar className={classes.avatar}>
+            <PlaylistAddIcon />
+          </Avatar>
         ) : null
       }
+      
+      
       title={
         <Typography variant="h5" component="p">
           {movie.title}{" "}
