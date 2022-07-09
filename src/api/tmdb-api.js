@@ -5,6 +5,7 @@ export const getMovies = () => {
     if (!response.ok) {
       throw new Error(response.json().message);
     }
+    console.log(response.json);
     return response.json();
   })
   .catch((error) => {
@@ -22,6 +23,7 @@ export const getMovie = (args) => {
     if (!response.ok) {
       throw new Error(response.json().message);
     }
+    console.log(response.json);
     return response.json();
   })
   .catch((error) => {
@@ -68,7 +70,7 @@ export const getMovie = (args) => {
     )
       .then((res) => res.json())
       .then((json) => {
-        // console.log(json.results);
+        console.log(json.results);
         return json.results;
       });
   };
@@ -76,7 +78,14 @@ export const getMovie = (args) => {
   export const getUpcomingMovies = () => {
     return fetch(
       `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
-    )
-      .then(res => res.json())
-      .then(json => json.results);
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      console.log(response.json);
+      return response.json();
+    })
+    .catch((error) => {
+       throw error
+    });
   };
